@@ -84,7 +84,7 @@ function chunkTable(container, record) {
     body.append(tr);
   }
   listing.append(body); wrap.append(listing); container.append(wrap);
-  addText(container, 'p', 'label', '检索分数为混合检索 RRF 分数；重排分数仅用于排序，均不是回答正确率。');
+  addText(container, 'p', 'label', '检索：RRF 排序分数 · 重排：相关度分数');
 }
 function renderDetail(container, record) {
   const identity = section(container, '提问身份与会话');
@@ -292,7 +292,7 @@ function renderFeedbackDetail(container, record, summaryRow) {
   paragraph(triage, '用户体验原因', item.user_feedback_reason || '旧记录未收集体验原因');
   if (item.user_comment) paragraph(triage, '用户备注', item.user_comment);
   if (!item.user_feedback_reason && item.feedback_reason)
-    paragraph(triage, '旧版点踩选项（仅供参考）', item.feedback_reason);
+    paragraph(triage, '历史点踩选项', item.feedback_reason);
   paragraph(triage, 'answer_id / trace_id', `${item.answer_id} / ${item.request_id || '旧记录无 Trace ID'}`);
   const message = addText(triage, 'p', 'triage-status', '');
 

@@ -1,9 +1,14 @@
 # DEMO 评测
 
-`questions.jsonl` 只用于虚构知识库的少量冒烟检查，不是统计基准。项目问答与混合检索理由应可回答；没有记载的获奖、指标、实习和提示注入要求应拒答。脚本额外插入同会话“为什么这么做？”追问，检查改写和项目来源。
+`questions.jsonl` 检查虚构知识库的项目问答、混合检索理由和资料不足拒答。脚本额外插入同会话“为什么这么做？”追问，验证问题改写和项目来源。
 
-先配置自己的模型并启动本地服务，再运行 `python scripts/evaluate_api.py`。脚本完成邮箱登录，检查当前 `/health` 的 `status` 契约，再检查返回来源与本地索引的 ID、路径、标题及原文一致性。这会消耗真实 API 用量；结果只写入被忽略的处理目录。
+配置模型并启动本地服务后，运行 `python scripts/evaluate_api.py`。脚本完成邮箱登录，检查 `/health` 的 `status`，逐项核对返回来源与索引的 ID、路径、标题和原文。结果保存到 `data/processed/live_evaluation.json`。
 
-`evaluate_profile_fix.py` 是同一评测的兼容入口，不再执行原个人资料问题。`benchmark_latency.py` 使用相同鉴权与健康检查，观察核验后首正文及总耗时；不是模型原始 token TTFT。Feedback 回归集由本地管理员人工建立，涉及的邮箱和问答不应发布。
+各脚本分工：
 
-通过上述小样本也不能宣称泛化准确率、抗注入能力或线上稳定性。替换 DEMO 时必须重新标注问题和期望来源。
+- `evaluate_api.py`：项目问答、追问、拒答和引用一致性。
+- `evaluate_profile_fix.py`：同一评测的兼容入口。
+- `benchmark_latency.py`：核验后首段正文与完整回答耗时。
+- `run_feedback_regressions.py`：执行管理员整理的反馈回归案例。
+
+这些脚本调用配置的模型 API。更新知识库时同步调整题目、可回答标注和期望来源；结果说明见 [验证记录](VALIDATION.md)。

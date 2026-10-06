@@ -1,9 +1,13 @@
-# 虚构知识库的编辑
+# 编辑演示知识库
 
-当前仓库包含 profile/demo_profile.md 与 projects/demo_rag.md 两份明确标记的虚构资料。公开展示版始终保留虚构身份，不填写真实简历、联系方式、学校、单位或用户问答。
+当前知识库包含 `profile/demo_profile.md` 和 `projects/demo_rag.md` 两份虚构资料，分别描述候选人背景和项目方法。
 
-仅读取 UTF-8 Markdown。按主题与标题分节，项目文档说明虚构背景、方法和设计理由，不编造可误认为作者成果的数字。未记录的信息通过拒答题检验，不能把未记录描述为从未发生。
+使用 UTF-8 Markdown，按主题与标题分节，写清项目背景、技术方法和选择理由。公开展示版使用虚构身份；真实资料放在独立私有副本中维护。
 
-更新资料后停止 API，运行 python scripts/build_index.py，然后重启。索引含原文，不进入 Git。同步更新 evaluation/questions.jsonl 的可回答标注与 expected_source，再用自己的模型独立验收；真实 API 脚本会产生用量。
+更新步骤：
 
-若将本代码用于真实个人资料，应在独立私有副本中操作，重新评估资料外发与访问范围，并确保不将真实数据合入公开展示仓库。
+1. 修改知识库与 `evaluation/questions.jsonl` 的可回答标注、`expected_source`。
+2. 停止 API，运行 `python scripts/build_index.py`。
+3. 重启服务，执行评测并核对引用。
+
+索引保存在被 Git 忽略的本地目录。真实 API 评测使用自己的模型配置并产生相应用量。
