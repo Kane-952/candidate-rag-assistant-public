@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f7f9f8">
+  <meta name="description" content="使用虚构候选人资料展示 RAG 检索、证据核验和问答流程。">
+  <title>示例候选人 Demo · 大模型应用实习作品集</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/questions.js" defer></script>
+  <script src="/app.js" defer></script>
+</head>
+<body>
+<main class="app is-empty">
+  <header class="header">
+    <a class="brand" href="/" aria-label="示例候选人 Demo，首页">
+      <span class="brand-avatar"><img src="/assets/demo-avatar.svg" alt="" width="36" height="36"></span>
+      <span>示例候选人 <span class="brand-en">/ Demo</span></span>
+    </a>
+    <div class="header-actions">
+      <button id="reset" class="quiet-button" type="button" disabled>新对话 <span aria-hidden="true">↗</span></button>
+      <button id="logout" class="quiet-button" type="button">退出登录</button>
+    </div>
+  </header>
+  <div class="stage">
+    <section id="messages" class="messages" aria-label="聊天历史" aria-live="polite" aria-relevant="additions text">
+      <div class="welcome">
+        <img class="hero-avatar" src="/assets/demo-avatar.svg" alt="通用演示助手图标" width="96" height="96">
+        <p class="eyebrow">RAG ENGINEERING · SYNTHETIC DEMO</p>
+        <h1>你好，我是示例候选人 <span>Demo.</span></h1>
+        <p class="direction">虚构候选人资料 · RAG 工程演示</p>
+        <p class="intro">人物与项目资料全部为虚构 DEMO，不代表作者经历。<br>你可以向助手提问，查看证据约束下的回答。</p>
+        <div class="suggestions" aria-labelledby="suggestions-title">
+          <p id="suggestions-title" class="suggestions-title">你可以从这些问题开始</p>
+          <div class="suggestion-grid"></div>
+        </div>
+      </div>
+    </section>
+    <form id="chat-form">
+      <div class="compose">
+        <label class="sr-only" for="message">你的问题</label>
+        <textarea id="message" rows="1" maxlength="2000" placeholder="想了解我的项目或经历？直接提问" required></textarea>
+        <button id="send" type="submit" aria-label="发送消息" title="发送消息" disabled><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 19V5m-6 6 6-6 6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+      <div class="composer-meta"><span id="input-hint">随时提问，也可以接着聊。</span><span class="keyboard-hint">Enter 发送 <span>·</span> Shift + Enter 换行</span></div>
+    </form>
+  </div>
+</main>
+</body>
+</html>

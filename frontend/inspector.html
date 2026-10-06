@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>RAG Inspector · 示例候选人</title>
+  <link rel="stylesheet" href="/inspector/style.css">
+  <script src="/inspector/app.js" defer></script>
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">DEVELOPER ACCESS</p>
+        <h1>RAG Inspector</h1>
+        <p class="subtitle">查看最近问答的检索路径、回答依据、耗时与反馈。</p>
+      </div>
+      <div class="actions"><a href="/">返回聊天</a><button id="refresh" type="button">刷新记录</button></div>
+    </header>
+    <section class="panel" aria-labelledby="records-title">
+      <div class="panel-head"><h2 id="records-title">最近问答</h2><span>默认显示 50 条；按邮箱筛选时显示该邮箱保留的全部记录（最多 200 条）</span></div>
+      <form id="email-filter" class="filter-row">
+        <label for="filter-email">按提问邮箱筛选</label>
+        <input id="filter-email" type="email" placeholder="输入完整邮箱地址" autocomplete="off">
+        <button type="submit">筛选</button>
+        <button id="clear-filter" type="button">清除</button>
+      </form>
+      <p id="notice" role="status">正在加载…</p>
+      <div class="table-wrap">
+        <table id="records" hidden>
+          <thead><tr><th>提问邮箱</th><th>提问时间</th><th>用户问题</th><th>回答状态</th><th>总耗时</th><th></th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+    <section id="access-panel" class="panel access-panel" aria-labelledby="access-title">
+      <div class="panel-head"><h2 id="access-title">登录访问日志</h2><span>仅展示成功登录的最近 50 条记录；旧记录可能没有 IP</span></div>
+      <form id="access-filter" class="filter-row">
+        <label for="access-email">按邮箱筛选</label>
+        <input id="access-email" type="email" placeholder="输入完整邮箱地址" autocomplete="off">
+        <button type="submit">筛选</button>
+        <button id="clear-access-filter" type="button">清除</button>
+        <button id="refresh-access" type="button">刷新</button>
+      </form>
+      <p id="access-notice" class="access-notice" role="status">正在加载…</p>
+      <div class="table-wrap">
+        <table id="access-records" hidden>
+          <thead><tr><th>邮箱</th><th>登录 IP</th><th>登录时间</th><th>Session ID</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+    <section id="feedback-panel" class="panel feedback-panel" aria-labelledby="feedback-title">
+      <div class="panel-head"><h2 id="feedback-title">Feedback · 点踩分析</h2><span>查看用户体验反馈，判断技术原因和修复进度</span></div>
+      <form id="feedback-filter" class="filter-row">
+        <label for="feedback-email">提问邮箱</label>
+        <input id="feedback-email" type="email" placeholder="完整邮箱，可留空" autocomplete="off">
+        <label for="feedback-reason-filter">用户体验原因</label>
+        <select id="feedback-reason-filter">
+          <option value="">全部原因</option>
+          <option>没有回答我的问题</option>
+          <option>回答不够清楚</option>
+          <option>回答太长</option>
+          <option>回答太简略</option>
+          <option>没有覆盖我关心的重点</option>
+          <option>其他</option>
+        </select>
+        <label for="feedback-status-filter">回答状态</label>
+        <select id="feedback-status-filter">
+          <option value="">全部状态</option>
+          <option>ANSWER</option><option>PARTIAL</option><option>REFUSE</option>
+        </select>
+        <button type="submit">筛选</button>
+        <button id="clear-feedback-filter" type="button">清除</button>
+      </form>
+      <p id="feedback-notice" role="status">正在加载…</p>
+      <div class="table-wrap">
+        <table id="feedback-records" hidden>
+          <thead><tr><th>反馈时间</th><th>提问邮箱</th><th>用户问题</th><th>用户体验原因</th><th>回答状态</th><th>管理员归因</th><th>处理状态</th><th></th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

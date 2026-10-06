@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f7f9f8">
+  <meta name="referrer" content="no-referrer">
+  <title>邮箱验证 · 示例候选人</title>
+  <link rel="stylesheet" href="/login.css">
+  <script src="/login.js" defer></script>
+</head>
+<body>
+  <main class="login-layout">
+    <section class="card" aria-labelledby="title">
+      <p class="eyebrow">EMAIL ACCESS</p>
+      <h1 id="title">邮箱验证</h1>
+      <p class="intro">使用你的邮箱获取一次性登录链接，验证后即可向我的 AI 助手提问。</p>
+      <form id="login-form">
+        <label for="email">邮箱地址</label>
+        <div class="fields">
+          <input id="email" name="email" type="email" autocomplete="email" placeholder="name@example.com" required maxlength="254">
+          <button id="submit" type="submit">发送登录链接</button>
+        </div>
+      </form>
+      <p id="status" role="status" aria-live="polite"></p>
+      <p class="footnote">登录链接短时间内有效，仅可使用一次。</p>
+    </section>
+  </main>
+</body>
+</html>
